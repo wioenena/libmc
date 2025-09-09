@@ -7,7 +7,6 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <expected>
 #include <span>
 #include <string>
 #include <string_view>
@@ -26,22 +25,17 @@ inline constexpr std::string_view VarIntTooBig = "VarInt is too big";
 inline constexpr std::string_view VarLongTooBig = "VarLong is too big";
 } // namespace error_messages
 
-[[nodiscard]] std::expected<std::int32_t, std::string_view>
-decodeVarInt(std::span<const std::uint8_t> data,
-             std::size_t &bytesRead) noexcept;
-[[nodiscard]] std::expected<void, std::string_view>
-encodeVarInt(std::int32_t value, std::vector<std::uint8_t> out) noexcept;
-[[nodiscard]] std::expected<std::int64_t, std::string_view>
-decodeVarLong(std::span<const std::uint8_t> data,
-              std::size_t &bytesRead) noexcept;
-[[nodiscard]] std::expected<void, std::string_view>
-encodeVarLong(std::int64_t value, std::vector<std::uint8_t> out) noexcept;
+[[nodiscard]] std::int32_t decodeVarInt(std::span<const std::uint8_t> data,
+                                        std::size_t &bytesRead);
+void encodeVarInt(std::int32_t value, std::vector<std::uint8_t> out) noexcept;
+[[nodiscard]] std::int64_t decodeVarLong(std::span<const std::uint8_t> data,
+                                         std::size_t &bytesRead);
+void encodeVarLong(std::int64_t value, std::vector<std::uint8_t> out) noexcept;
 
-[[nodiscard]] std::expected<std::string, std::string_view>
-decodeString(std::span<const std::uint8_t> data,
-             std::size_t &bytesRead) noexcept;
-[[nodiscard]] std::expected<void, std::string_view>
-encodeString(const std::string &value, std::vector<std::uint8_t> out) noexcept;
+[[nodiscard]] std::string decodeString(std::span<const std::uint8_t> data,
+                                       std::size_t &bytesRead);
+void encodeString(const std::string &value,
+                  std::vector<std::uint8_t> out) noexcept;
 
 } // namespace libmc::protocol
 
