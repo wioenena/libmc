@@ -1,3 +1,4 @@
 vcpkg-configuration.json
 .cache
 build
+vcpkg_installed
