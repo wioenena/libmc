@@ -1,35 +1,26 @@
-# .clang-format
-
-# Temel ayarlar
 BasedOnStyle: Google
 Language: Cpp
 Standard: Cpp20
 
-# Girintileme
 IndentWidth: 4
 TabWidth: 4
 UseTab: Never
 ContinuationIndentWidth: 4
 
-# Boşluklar
 SpaceBeforeParens: ControlStatements
 SpaceAfterCStyleCast: true
 PointerAlignment: Left
 AlignTrailingComments: true
 
-# Satır uzunluğu
 ColumnLimit: 100
 BreakBeforeBraces: Allman
 AllowShortFunctionsOnASingleLine: false
 
-# Include sıralaması
 SortIncludes: true
 IncludeBlocks: Preserve
 
-# Namespace ve class
 IndentNamespace: Inner
 IndentAccessModifiers: true
 
-# Template ve function ayarları
 AlwaysBreakTemplateDeclarations: Yes
 DerivePointerAlignment: false
