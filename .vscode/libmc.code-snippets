@@ -1,0 +1,27 @@
+{
+  "libmc hpp": {
+    "scope": "cpp",
+    "prefix": "libmc_header",
+    "body": [
+      "#ifndef LIBMC_${1:LIBRARY_NAME}_${2:HEADER_NAME}_HPP",
+      "#define LIBMC_${1:LIBRARY_NAME}_${2:HEADER_NAME}_HPP\n",
+      "#if defined(_WIN32) || defined(_WIN64)",
+      "#pragma once",
+      "#endif\n",
+      "namespace libmc::${3:NAMESPACE_NAME} {\n",
+      "$4",
+      "} // namespace libmc::${3:NAMESPACE_NAME}\n",
+      "#endif // LIBMC_${1:LIBRARY_NAME}_${2:HEADER_NAME}_HPP"
+    ]
+  },
+  "libmc cpp": {
+    "scope": "cpp",
+    "prefix": "libmc_cpp",
+    "body": [
+      "#include \"${1:header_file}.hpp\"\n",
+      "namespace libmc::${2:NAMESPACE_NAME} {\n",
+      "$3",
+      "} // namespace libmc::${2:NAMESPACE_NAME}"
+    ]
+  }
+}
