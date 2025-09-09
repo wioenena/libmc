@@ -19,7 +19,7 @@ decodeVarInt(std::span<const std::uint8_t> data, std::size_t &bytesRead) {
     if ((currentByte & CONTINUE_BIT) == 0)
       break;
 
-    position += VARINT_VARLONG__SIZE;
+    position += VARINT_VARLONG_POSITION_INCREMENT_SIZE;
 
     if (position >= static_cast<std::int32_t>(MAX_VARINT_POSITION))
       return std::unexpected<std::string>(error_messages::VarIntTooBig);
@@ -45,7 +45,7 @@ decodeVarLong(std::span<const std::uint8_t> data, std::size_t &bytesRead) {
     if ((currentByte & CONTINUE_BIT) == 0)
       break;
 
-    position += VARINT_VARLONG__SIZE;
+    position += VARINT_VARLONG_POSITION_INCREMENT_SIZE;
 
     if (position >= static_cast<std::int32_t>(MAX_VARLONG_POSITION))
       return std::unexpected<std::string>(error_messages::VarLongTooBig);
