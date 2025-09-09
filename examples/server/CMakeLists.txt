@@ -1,0 +1,2 @@
+
+add_executable(server src/main.cpp)
