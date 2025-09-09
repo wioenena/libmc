@@ -1,4 +1,4 @@
-#include "protocol/datatypes.hpp"
+#include "protocol/data_types.hpp"
 
 namespace libmc::protocol {
 
