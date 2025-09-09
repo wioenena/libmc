@@ -13,6 +13,7 @@
 #include <string_view>
 
 namespace libmc::protocol {
+
 constexpr std::uint8_t SEGMENT_BITS = 0x7F;
 constexpr std::uint8_t CONTINUE_BIT = 0x80;
 constexpr std::size_t VARINT_VARLONG_POSITION_INCREMENT_SIZE = 7;
