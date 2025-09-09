@@ -1,8 +1,6 @@
 #ifndef LIBMC_PROTOCOL_DATATYPES_HPP
 #define LIBMC_PROTOCOL_DATATYPES_HPP
 
-#include <span>
-#include <string_view>
 #if defined(_WIN32) || defined(_WIN64)
 #pragma once
 #endif
@@ -10,7 +8,10 @@
 #include <cstddef>
 #include <cstdint>
 #include <expected>
+#include <span>
 #include <string>
+#include <string_view>
+
 
 namespace libmc::protocol {
 constexpr std::uint8_t SEGMENT_BITS = 0x7F;
