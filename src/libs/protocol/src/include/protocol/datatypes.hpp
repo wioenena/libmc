@@ -1,0 +1,28 @@
+#ifndef LIBMC_PROTOCOL_DATATYPES_HPP
+#define LIBMC_PROTOCOL_DATATYPES_HPP
+
+#if defined(_WIN32) || defined(_WIN64)
+#pragma once
+#endif
+
+#include <cstddef>
+#include <cstdint>
+#include <expected>
+#include <string>
+
+namespace libmc::protocol {
+constexpr std::uint8_t SEGMENT_BITS = 0x7F;
+constexpr std::uint8_t CONTINUE_BIT = 0x80;
+constexpr std::size_t VARINT_VARLONG__SIZE = 7;
+constexpr std::size_t MAX_VARINT_POSITION = 32;
+constexpr std::size_t MAX_VARLONG_POSITION = 64;
+
+[[nodiscard]] std::expected<std::int32_t, std::string>
+decodeVarInt(const std::uint8_t *data, std::size_t &bytesRead);
+
+[[nodiscard]] std::expected<std::int64_t, std::string>
+decodeVarLong(const std::uint8_t *data, std::size_t &bytesRead);
+
+} // namespace libmc::protocol
+
+#endif // LIBMC_PROTOCOL_DATATYPES_HPP

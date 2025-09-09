@@ -1,9 +1,21 @@
 {
   "editor.formatOnSave": true,
+  "clangd.arguments": [
+    "--compile-commands-dir=build",
+  ],
   "[cpp]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
   },
   "[jsonc][json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.cache": true,
+    "**/build": true
   }
 }
