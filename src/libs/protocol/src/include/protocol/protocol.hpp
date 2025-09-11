@@ -5,6 +5,16 @@
 #pragma once
 #endif
 
-namespace libmc::protocol {} // namespace libmc::protocol
+#include <cstdint>
+
+namespace libmc::protocol {
+enum class ConnectionState : std::uint8_t {
+  HANDSHAKING,
+  STATUS,
+  LOGIN,
+  CONFIGURATION,
+  PLAY,
+};
+} // namespace libmc::protocol
 
 #endif // LIBMC_PROTOCOL_PROTOCOL_HPP
