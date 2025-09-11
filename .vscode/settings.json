@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": true,
+  "window.zoomLevel": 0.75,
   "clangd.arguments": [
     "--compile-commands-dir=build",
   ],
