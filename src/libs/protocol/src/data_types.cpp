@@ -7,14 +7,13 @@ namespace libmc::protocol {
                                         std::size_t &bytesRead) {
   std::int32_t value = 0;
   std::int32_t position = 0;
-  std::uint8_t currentByte = 0;
   std::size_t dataSize = data.size();
 
   while (true) {
     if (bytesRead >= dataSize)
       throw std::runtime_error(std::string(error_messages::OUT_OF_BOUNDS));
 
-    currentByte = data[bytesRead++];
+    std::uint8_t currentByte = data[bytesRead++];
     value |= (currentByte & SEGMENT_BITS) << position;
 
     if ((currentByte & CONTINUE_BIT) == 0)
@@ -29,7 +28,7 @@ namespace libmc::protocol {
   return value;
 }
 
-void encodeVarInt(std::int32_t value, std::vector<std::uint8_t> out) noexcept {
+void encodeVarInt(std::int32_t value, std::vector<std::uint8_t> &out) noexcept {
   while (true) {
     if ((value & ~SEGMENT_BITS) == 0) {
       out.push_back(static_cast<std::uint8_t>(value));
@@ -71,7 +70,8 @@ void encodeVarInt(std::int32_t value, std::vector<std::uint8_t> out) noexcept {
   return value;
 }
 
-void encodeVarLong(std::int64_t value, std::vector<std::uint8_t> out) noexcept {
+void encodeVarLong(std::int64_t value,
+                   std::vector<std::uint8_t> &out) noexcept {
   while (true) {
     if ((value & static_cast<std::int64_t>(~SEGMENT_BITS)) == 0) {
       out.push_back(static_cast<std::uint8_t>(value));
@@ -102,7 +102,7 @@ void encodeVarLong(std::int64_t value, std::vector<std::uint8_t> out) noexcept {
 }
 
 void encodeString(const std::string &value,
-                  std::vector<std::uint8_t> out) noexcept {
+                  std::vector<std::uint8_t> &out) noexcept {
   std::size_t length = value.size();
 
   encodeVarInt(static_cast<std::int32_t>(length), out);
