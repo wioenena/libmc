@@ -14,10 +14,10 @@
 
 namespace libmc::protocol {
 
-constexpr std::uint8_t SEGMENT_BITS = 0x7F;
-constexpr std::uint8_t CONTINUE_BIT = 0x80;
-constexpr std::size_t MAX_VARINT_POSITION = 32;
-constexpr std::size_t MAX_VARLONG_POSITION = 64;
+constexpr inline std::uint8_t SEGMENT_BITS = 0x7F;
+constexpr inline std::uint8_t CONTINUE_BIT = 0x80;
+constexpr inline std::size_t MAX_VARINT_POSITION = 32;
+constexpr inline std::size_t MAX_VARLONG_POSITION = 64;
 
 namespace error_messages {
 inline constexpr std::string_view OUT_OF_BOUNDS = "Out of bounds";
@@ -27,15 +27,18 @@ inline constexpr std::string_view VarLongTooBig = "VarLong is too big";
 
 [[nodiscard]] std::int32_t decodeVarInt(std::span<const std::uint8_t> data,
                                         std::size_t &bytesRead);
-void encodeVarInt(std::int32_t value, std::vector<std::uint8_t> out) noexcept;
+void encodeVarInt(std::int32_t value, std::vector<std::uint8_t> &out) noexcept;
 [[nodiscard]] std::int64_t decodeVarLong(std::span<const std::uint8_t> data,
                                          std::size_t &bytesRead);
-void encodeVarLong(std::int64_t value, std::vector<std::uint8_t> out) noexcept;
+void encodeVarLong(std::int64_t value, std::vector<std::uint8_t> &out) noexcept;
 
 [[nodiscard]] std::string decodeString(std::span<const std::uint8_t> data,
                                        std::size_t &bytesRead);
 void encodeString(const std::string &value,
                   std::vector<std::uint8_t> out) noexcept;
+
+[[nodiscard]] std::uint16_t decodeShort(std::span<const std::uint8_t> data,
+                                        std::size_t &bytesRead);
 
 } // namespace libmc::protocol
 
